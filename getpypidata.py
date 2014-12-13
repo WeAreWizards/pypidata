@@ -27,7 +27,11 @@ def fetch_and_store(package_name):
     url = PACKAGE_URL.format(package_name)
     try:
         content = requests.get(url).content
-    except IOError:
+
+    except requests.RequestException:
+        # Reschedule scraping. We don't keep count on how often this
+        # fails and stop scraping because pypi's super solid and seems
+        # to always work.
         return [package_name]
 
     pb = raw_data_pb2.RawData(
