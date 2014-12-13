@@ -1,0 +1,8 @@
+// protoc --python_out=. raw_data.proto 
+
+message RawData {
+  optional uint64 retrieved_timestamp = 1;
+  optional bytes url_used = 2;
+  optional bytes package_name = 3;
+  optional bytes package_json = 4;
+}
